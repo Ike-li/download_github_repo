@@ -12,22 +12,23 @@ def github(developer_work_dir, token, proxy):
     url = "https://api.github.com/user/repos"
 
     payload = {}
-    headers = {'Authorization': f'Bearer {token}'}
+    headers = {"Authorization": f"Bearer {token}"}
     response = requests.request("GET", url, headers=headers, data=payload)
 
     for repo in response.json():
         repo_name = repo["name"]
         clone_url = repo["clone_url"]
 
-        if os.path.exists(f'{developer_work_dir}/{repo_name}'):
+        if os.path.exists(f"{developer_work_dir}/{repo_name}"):
             print(repo_name + " 已存在，即将切换到 master 进行更新")
             _shell(
-                f' cd {developer_work_dir}/{repo_name} && {proxy} && git switch master && git pull origin master'
+                f" cd {developer_work_dir}/{repo_name} && {proxy} && git switch master && git pull origin master"
             )
         else:
             print(repo_name + " 不存在， 即将 clone " + clone_url)
             _shell(
-                f"cd {developer_work_dir} && {proxy} && git clone {clone_url}")
+                f"cd {developer_work_dir} && {proxy} && git clone {clone_url}"
+            )
             # gh repo clone user_name/repo_name 可能会更快
 
 
@@ -53,7 +54,7 @@ def _seek_developer_work_dir():
     raise Exception("Developer work dir not found")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     token = os.getenv("TOKEN")
     proxy = os.getenv("PROXY")
     developer_work_dir = _seek_developer_work_dir()
