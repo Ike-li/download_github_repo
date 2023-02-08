@@ -156,3 +156,5 @@ docs/
 
 # Container soft connection
 src/Makefile
+
+src/.env
