@@ -15,6 +15,9 @@ def github(developer_work_dir, token, proxy):
     headers = {"Authorization": f"Bearer {token}"}
     response = requests.request("GET", url, headers=headers, data=payload)
 
+    if "message" in response.json():
+        raise "Token is expire"
+
     for repo in response.json():
         repo_name = repo["name"]
         clone_url = repo["clone_url"]
