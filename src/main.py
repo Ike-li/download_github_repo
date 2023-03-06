@@ -9,7 +9,7 @@ load_dotenv()
 
 # TODO 这个函数名想一下
 def github(developer_work_dir, token, proxy):
-    url = "https://api.github.com/user/repos"
+    url = "https://api.github.com/user/repos?type=all&sort=updated"
 
     payload = {}
     headers = {"Authorization": f"Bearer {token}"}
@@ -25,7 +25,7 @@ def github(developer_work_dir, token, proxy):
         if os.path.exists(f"{developer_work_dir}/{repo_name}"):
             print(repo_name + " 已存在，即将切换到 master 进行更新")
             _shell(
-                f" cd {developer_work_dir}/{repo_name} && {proxy} && git switch master && git pull origin master"
+                f" cd {developer_work_dir}{repo_name} && {proxy} && git switch master && git pull origin master"
             )
         else:
             print(repo_name + " 不存在， 即将 clone " + clone_url)
