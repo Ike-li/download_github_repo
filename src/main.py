@@ -27,6 +27,13 @@ def github(developer_work_dir, token, proxy):
             _shell(
                 f" cd {developer_work_dir}{repo_name} && {proxy} && git switch master && git pull origin master"
             )
+
+            if os.path.exists(f"{developer_work_dir}/{repo_name}/docker"):
+                print(repo_name + " 存在 docker 目录，即将启动")
+                _shell(
+                    f"cd {developer_work_dir}/{repo_name}/docker && docker-compose up -d"
+                )
+                print(repo_name + " docker 启动完成")
         else:
             print(repo_name + " 不存在， 即将 clone " + clone_url)
             _shell(
