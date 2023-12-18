@@ -48,9 +48,13 @@ def github(developer_work_dir, token, proxy):
             #     print(repo_name + " docker 启动完成")
         else:
             print(repo_name + " 不存在， 即将 clone " + clone_url)
-            _shell(
-                f"cd {developer_work_dir} && {proxy} && git clone {clone_url}")
-            # gh repo clone user_name/repo_name 可能会更快
+            if proxy:
+                _shell(
+                    f"cd {developer_work_dir} && {proxy} && git clone {clone_url}")
+                # gh repo clone user_name/repo_name 可能会更快
+            else:
+                _shell(
+                    f"cd {developer_work_dir} && git clone {clone_url}")
 
 
 def _shell(cmd):
@@ -67,6 +71,7 @@ def _seek_developer_work_dir():
         "/Users/viktor/project/",
         "/Users/leo/PycharmProjects/",
         '/Users/johnnyli/project',
+        "/Users/johnnyli/Documents/GitHub/",
     ]
 
     for work_dir in developer_work_dirs:
