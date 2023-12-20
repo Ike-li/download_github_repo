@@ -72,6 +72,7 @@ def _seek_developer_work_dir():
         "/Users/leo/PycharmProjects/",
         '/Users/johnnyli/project',
         "/Users/johnnyli/Documents/GitHub/",
+        "/Users/philkruppa/project/"
     ]
 
     for work_dir in developer_work_dirs:
