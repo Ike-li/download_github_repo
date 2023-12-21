@@ -70,7 +70,7 @@ def _seek_developer_work_dir():
         "/Users/one/project/",
         "/Users/viktor/project/",
         "/Users/leo/PycharmProjects/",
-        '/Users/johnnyli/project',
+        '/Users/johnnyli/project/',
         "/Users/johnnyli/Documents/GitHub/",
         "/Users/philkruppa/project/"
     ]
