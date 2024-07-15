@@ -34,7 +34,7 @@ def github(developer_work_dir, token, proxy):
         repo_name = repo["name"]
         clone_url = repo["clone_url"]
         if repo_name in ["code", "diagnosis", "health_care"]:
-            # 跳过
+            # 跳过大文件
             continue
 
         if os.path.exists(f"{developer_work_dir}/{repo_name}"):
