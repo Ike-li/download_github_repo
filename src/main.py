@@ -33,6 +33,9 @@ def github(developer_work_dir, token, proxy):
     for repo in all_repos:
         repo_name = repo["name"]
         clone_url = repo["clone_url"]
+        if repo_name in ["code", "diagnosis", "health_care"]:
+            # 跳过
+            continue
 
         if os.path.exists(f"{developer_work_dir}/{repo_name}"):
             print(repo_name + " 已存在，即将切换到 master 进行更新")
@@ -69,7 +72,7 @@ def _seek_developer_work_dir():
         "/Users/crow/project/",
         "/Users/one/project/",
         "/Users/viktor/project/",
-        "/Users/leo/PycharmProjects/",
+        "/Users/lee/PycharmProjects/",
         '/Users/johnnyli/project/',
         "/Users/johnnyli/Documents/GitHub/",
         "/Users/philkruppa/project/"
